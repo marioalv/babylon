@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+*.kpf
+*.xpt
+*.komodoproject
+source/chrome/ebaycompanion.jar
+source/modules/core
+source/*.xpi
+bin/
+*.svn

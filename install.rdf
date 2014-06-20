@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>{a27007d0-bec0-4df7-abf8-54ae0b833ce8}</em:id>
+    <em:version>2.0</em:version>
+    <em:type>2</em:type>
+    <em:creator>Mario Alvarado [marioalv]</em:creator>
+    <em:iconURL>chrome://babylonWordSearch/skin/babylon.png</em:iconURL>
+    <em:optionsURL>chrome://babylonWordSearch/content/preferences.xul</em:optionsURL>
+    <em:name>Babylon Word Search</em:name>
+    <em:description>Find definition for the selected word using Babylon online service</em:description>
+
+    <em:localized>
+      <Description>
+        <em:locale>es-ES</em:locale>
+        <em:name>Búsqueda de palabras en Babylon</em:name>
+        <em:description>Encuentra la definición de la palabra seleccionada utilizando el servicio en línea de Babylon</em:description>
+        <em:creator>Mario Alvarado [marioalv]</em:creator>
+      </Description>
+    </em:localized>
+
+    <em:localized>
+      <Description>
+        <em:locale>pt-PT</em:locale>
+        <em:name>Pesquisa de palavra Babylon</em:name>
+        <em:description>Pesquisar definição para a palavra selecionada usando o serviço em línea Babylon</em:description>
+        <em:creator>Mario Alvarado [marioalv]</em:creator>
+      </Description>
+    </em:localized>
+
+    <em:localized>
+      <Description>
+        <em:locale>it-IT</em:locale>
+        <em:name>Babylon Ricerca di Parole</em:name>
+        <em:description>Trovare definizione della parola selezionata usando il servizio Babylon online</em:description>
+        <em:creator>Mario Alvarado [marioalv]</em:creator>
+      </Description>
+    </em:localized>
+
+    <!-- Firefox -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>3.0</em:minVersion>
+        <em:maxVersion>31.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+    <!-- Thunderbird  -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+        <em:minVersion>3.0a1pre</em:minVersion>
+        <em:maxVersion>8.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+  </Description>
+</RDF>

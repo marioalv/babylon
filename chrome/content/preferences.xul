@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://babylonWordSearch/locale/babylonWordSearch.dtd">
+
+<prefwindow id="babylon-word-search-prefwindow" width="460px" height="400px"
+            title="&babylonWordSearch.prefWindow.title;"
+            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+            xmlns:html="http://www.w3.org/1999/xhtml">
+
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Preferences.js" />
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="babylon-word-search-strings"
+                  src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
+  </stringbundleset>
+
+  <prefpane label="&babylonWordSearch.prefWindow.prefPane.title;">
+    <preferences>
+      <preference id="babylon-word-search-status-bar-icon"
+                  name="babylonWordSearch.showStatusBarIcon"
+                  type="bool"/>
+      <preference id="babylon-word-search-double-click-search"
+                  name="babylonWordSearch.isDoubleClickSearch"
+                  type="bool"/>
+      <preference id="babylon-word-search-open-results-same-window"
+                  name="babylonWordSearch.openResultsInSameWindow"
+                  type="bool"/>
+      <preference id="babylon-word-search-default-language"
+                  name="babylonWordSearch.defaultSearchLanguage"
+                  type="string"/>
+      <preference id="babylon-word-search-keyboard-shortcut"
+                  name="babylonWordSearch.keyboardShortcut"
+                  type="string"/>
+      <preference id="babylon-word-search-use-shortcut"
+                  name="babylonWordSearch.useShortcut"
+                  type="bool"/>
+    </preferences>
+
+    <groupbox flex="1">
+      <caption label="&babylonWordSearch.prefWindow.prefPane.settings;"/>
+      <checkbox id="babylon-word-search-status-bar-icon-check"
+                preference="babylon-word-search-status-bar-icon"
+                label="&babylonWordSearch.prefWindow.prefPane.statusBarIcon;"
+                accesskey="&babylonWordSearch.prefWindow.statusBarIcon.accesskey;"
+                checked="true"/>
+
+      <checkbox id="babylon-word-search-double-click-search-check"
+                preference="babylon-word-search-double-click-search"
+                label="&babylonWordSearch.prefWindow.prefPane.doubleClickSearch;"
+                accesskey="&babylonWordSearch.prefWindow.doubleClick.accesskey;"
+                checked="false"/>
+
+      <checkbox id="babylon-word-search-open-results-same-window-check"
+                preference="babylon-word-search-open-results-same-window"
+                label="&babylonWordSearch.prefWindow.prefPane.openResultsSameWindow;"
+                accesskey="&babylonWordSearch.prefWindow.sameWindow.accesskey;"
+                checked="true"/>
+
+      <hbox align="center">
+        <label control="babylon-word-search-languages-list"
+               value="&babylonWordSearch.prefWindow.prefPane.defaultLanguage;"/>
+        <menulist id="babylon-word-search-languages-list"
+                  preference="babylon-word-search-default-language">
+          <menupopup id="babylon-word-search-languages-list-popup">
+          </menupopup>
+        </menulist>
+      </hbox>
+    </groupbox>
+    <spacer flex="1"/>
+    <groupbox>
+      <caption>
+        <checkbox id="babylon-word-search-use-shortcut-checkbox"
+                  label="&babylonWordSearch.prefWindow.prefPane.useShortcut;"
+                  preference="babylon-word-search-use-shortcut"
+                  oncommand="BabylonWordSearch.Preferences.toggleShortcutUsage();"/>
+      </caption>
+      <hbox>
+        <button id="babylon-word-search-keyboard-shortcut-button"
+                oncommand="BabylonWordSearch.Preferences.handleShortcutSet();"/>
+        <textbox id="babylon-word-search-keyboard-shortcut-textbox" readonly="true"
+                 preference="babylon-word-search-keyboard-shortcut" flex="1"/>
+      </hbox>
+      <hbox>
+        <description id="babylon-word-search-keyboard-shortcut-title-message" value=""/>
+      </hbox>
+      <hbox style="margin:10px">
+        <textbox id="babylon-word-search-keyboard-shortcut-message" class="plain"
+                 style="background-color:transparent;"
+                 multiline="true" readonly="true" flex="1"
+                 onoverflow="this.height=this.inputField.scrollHeight;"
+                 DOMAttrModified="if(event.attrName == 'value') this.value = event.newValue; return true;"
+                 value="" />
+      </hbox>
+    </groupbox>
+  </prefpane>
+
+</prefwindow>

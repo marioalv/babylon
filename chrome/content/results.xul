@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://babylonWordSearch/skin/babylonWordSearch.css"?>
+<!DOCTYPE overlay SYSTEM "chrome://babylonWordSearch/locale/babylonWordSearch.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        id="babylon-word-search-results-window" buttons=",">
+
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Results.js" />
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="babylon-word-search-strings"
+                  src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
+  </stringbundleset>
+
+  <vbox>
+    <hbox align="center" pack="start" flex="1">
+      <label control="babylon-word-search-text"
+             value="&babylonWordSearch.resultsWindow.header.searchFor;"/>
+      <textbox id="babylon-word-search-text"
+               oncommand="BabylonWordSearch.Results.generateSearchLink();"
+               type="search" searchbutton="true" focused="true"/>
+      <label control="babylon-word-search-text"
+             value="&babylonWordSearch.resultsWindow.header.in;"/>
+      <menulist id="babylon-word-search-languages-list"
+                oncommand="BabylonWordSearch.Results.generateSearchLink();">
+        <menupopup id="babylon-word-search-languages-list-popup">
+        </menupopup>
+      </menulist>
+      <image id="babylon-word-search-loading-image" src=""/>
+    </hbox>
+  </vbox>
+  <iframe id="babylon-word-search-results-frame" type="content" flex="1"/>
+</dialog>

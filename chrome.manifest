@@ -1,0 +1,10 @@
+content   babylonWordSearch                     chrome/content/
+locale    babylonWordSearch en-US               chrome/locale/en-US/
+locale    babylonWordSearch es-ES               chrome/locale/es-ES/
+locale    babylonWordSearch pt-PT               chrome/locale/pt-PT/
+locale    babylonWordSearch it-IT               chrome/locale/it-IT/
+skin      babylonWordSearch classic/1.0         chrome/skin/classic/
+overlay   chrome://browser/content/browser.xul                              chrome://babylonWordSearch/content/overlay-firefox.xul  application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay   chrome://messenger/content/messenger.xul                          chrome://babylonWordSearch/content/overlay-thunderbird.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+overlay   chrome://messenger/content/messageWindow.xul                      chrome://babylonWordSearch/content/overlay-thunderbird.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+overlay   chrome://messenger/content/messengercompose/messengercompose.xul  chrome://babylonWordSearch/content/overlay-thunderbird.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}

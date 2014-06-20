@@ -1,0 +1,15 @@
+<!ENTITY babylonWordSearch.search "Pesqusiar em Babylon">
+<!ENTITY babylonWordSearch.accesskey "e">
+
+<!ENTITY babylonWordSearch.prefWindow.title                           "Babylon Preferências de Pesquisa de Palavra">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.title                  "Preferências de Pesquisa">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.settings               "Preferências">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.doubleClickSearch      "Pesquisa por definição de palavra ao clique duplo">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.openResultsSameWindow  "Sempre abrir resultados na mesma janela">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.defaultLanguage        "Idioma padrão da pesquisa: ">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.useShortcut            "Use atalhos de teclado">
+
+<!ENTITY babylonWordSearch.prefWindow.doubleClick.accesskey           "d">
+<!ENTITY babylonWordSearch.prefWindow.sameWindow.accesskey            "s">
+<!ENTITY babylonWordSearch.resultsWindow.header.searchFor             "pesquisa:">
+<!ENTITY babylonWordSearch.resultsWindow.header.in                    "em">

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="chrome://babylonWordSearch/skin/babylonWordSearch.css"?>
+<!DOCTYPE overlay SYSTEM "chrome://babylonWordSearch/locale/babylonWordSearch.dtd">
+
+<overlay id="babylon-word-search-browser-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.js" />
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
+  <script type="application/x-javascript"
+          src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
+
+  <window id="main-window">
+    <keyset id="babylon-word-search-keyset">
+      <key id="babylon-word-search-key" modifiers="" key=""
+           oncommand="BabylonWordSearch.searchWordInBabylon();"/>
+    </keyset>
+  </window>
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="babylon-word-search-strings"
+                  src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
+  </stringbundleset>
+
+  <!-- tools menu -->
+  <menupopup id="menu_ToolsPopup"
+             onpopupshowing="BabylonWordSearch.overwriteBabylonToolsMenu();">
+    <menuitem id="babylon-word-search-tools-panel"
+              label="&babylonWordSearch.search;"
+              image="chrome://babylonWordSearch/skin/Babylon16x16.ico"
+              class="menuitem-iconic"
+              accesskey="&babylonWordSearch.accesskey;"
+              insertafter="devToolsSeparator"
+              oncommand="BabylonWordSearch.searchWordInBabylon();"
+              key="babylon-word-search-key"/>
+  </menupopup>
+
+  <!-- context menu -->
+  <popup id="contentAreaContextMenu">
+    <menuitem id="babylon-word-search-context-menu"
+              label="&babylonWordSearch.search;"
+              image="chrome://babylonWordSearch/skin/Babylon16x16.ico"
+              class="menuitem-iconic"
+              accesskey="&babylonWordSearch.accesskey;"
+              insertafter="context-stop"
+              oncommand="BabylonWordSearch.searchWordInBabylon();"/>
+  </popup>
+
+  <statusbar id="status-bar">
+    <statusbarpanel id="babylon-word-search-status-bar-panel"
+                    onclick="BabylonWordSearch.processStatusbarClick(event);"
+                    image="chrome://babylonWordSearch/skin/Babylon16x16.ico"
+                    class="statusbarpanel-iconic"/>
+  </statusbar>
+
+</overlay>

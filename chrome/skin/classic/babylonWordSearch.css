@@ -5,3 +5,12 @@
 #babylon-word-search-loading-image {
   width: 16px;
 }
+
+
+#babylon-toolbar-item {
+  list-style-image: url("chrome://babylonWordSearch/skin/Babylon16x16.ico");
+}
+
+toolbar[iconsize="small"] #babylon-toolbar-item {
+  list-style-image: url("chrome://babylonWordSearch/skin/Babylon16x16.ico");
+}

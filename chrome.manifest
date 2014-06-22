@@ -8,3 +8,4 @@ overlay   chrome://browser/content/browser.xul                              chro
 overlay   chrome://messenger/content/messenger.xul                          chrome://babylonWordSearch/content/overlay-thunderbird.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}
 overlay   chrome://messenger/content/messageWindow.xul                      chrome://babylonWordSearch/content/overlay-thunderbird.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}
 overlay   chrome://messenger/content/messengercompose/messengercompose.xul  chrome://babylonWordSearch/content/overlay-thunderbird.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+style     chrome://global/content/customizeToolbar.xul                      chrome://babylonWordSearch/skin/babylonWordSearch.css

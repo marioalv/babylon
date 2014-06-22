@@ -70,6 +70,77 @@ BabylonWordSearch = {
                                    .getBranch("babylonWordSearch.");
     this.babylonPrefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
     this.babylonPrefs.addObserver("", this, false);
+
+    // initializes the babylon button.
+    this._initBabylonButton();
+  },
+
+  _initBabylonButton : function() {
+    this._overwriteCustomizeDone();
+    this._installToolbarButton();
+  },
+
+  /**
+   * Overwrites the BrowserToolboxCustomizeDone method.
+   */
+  _overwriteCustomizeDone : function() {
+    let that = this;
+    let originalCustomizeDone = BrowserToolboxCustomizeDone;
+
+    BrowserToolboxCustomizeDone = function(toolboxChanged) {
+      originalCustomizeDone(toolboxChanged);
+      that._afterCustomizeDone();
+    };
+  },
+
+   /**
+   * Processes after the BrowserToolboxCustomizeDone is called.
+   */
+  _afterCustomizeDone : function() {
+    this.prefManager.setBoolPref("babylonWordSearch.buttonInToolbar",
+      this._isButtonInMainToolbar());
+  },
+
+  /**
+   * Checks if the button is placed in the main toolbar.
+   * @return true if placed in the main toolbar, false otherwise.
+   */
+  _isButtonInMainToolbar : function() {
+    let toolbar = document.getElementById("nav-bar");
+
+    return (-1 != toolbar.currentSet.indexOf("babylon-toolbar-item"));
+  },
+
+  /**
+   * Installs the toolbar button on the first run.
+   */
+  _installToolbarButton: function() {
+    var buttonInstalled =
+      this.prefManager.getBoolPref("babylonWordSearch.buttonAddedToFF4");
+
+    if (!buttonInstalled) {
+      var id = "babylon-toolbar-item";
+
+      if (!document.getElementById(id)) {
+        var toolbar = document.getElementById("nav-bar");
+
+        // If no afterId is given, then append the item to the toolbar
+        let before = null;
+        let elem = document.getElementById("urlbar-container");
+        if (elem && elem.parentNode == toolbar)
+          before = elem;
+
+        //XXX: let's add the button at the end of the toolbar
+        toolbar.insertItem(id, null, null, null);
+        toolbar.setAttribute("currentset", toolbar.currentSet);
+        document.persist(toolbar.id, "currentset");
+      }
+      this.prefManager.setBoolPref("babylonWordSearch.buttonAddedToFF4", true);
+    }
+
+    try {
+      BrowserToolboxCustomizeDone(true);
+    } catch (e) { }
   },
 
   /**

@@ -55,4 +55,13 @@
                     class="statusbarpanel-iconic"/>
   </statusbar>
 
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton id="babylon-toolbar-item"
+      class="toolbarbutton-1 chromeclass-toolbar-additional"
+      label="Babylon"
+      tooltiptext="Babylon"
+      oncommand="BabylonWordSearch.searchWordInBabylon();">
+    </toolbarbutton>
+  </toolbarpalette>
+
 </overlay>

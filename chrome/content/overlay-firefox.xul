@@ -6,11 +6,11 @@
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script type="application/x-javascript"
-          src="chrome://babylonWordSearch/content/BabylonWordSearch.js" />
+    src="chrome://babylonWordSearch/content/BabylonWordSearch.js" />
   <script type="application/x-javascript"
-          src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
+    src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
   <script type="application/x-javascript"
-          src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
+    src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
 
   <window id="main-window">
     <keyset id="babylon-word-search-keyset">
@@ -21,7 +21,7 @@
 
   <stringbundleset id="stringbundleset">
     <stringbundle id="babylon-word-search-strings"
-                  src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
+      src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
   </stringbundleset>
 
   <!-- tools menu -->

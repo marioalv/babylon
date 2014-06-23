@@ -7,15 +7,15 @@
         id="babylon-word-search-results-window" buttons=",">
 
   <script type="application/x-javascript"
-          src="chrome://babylonWordSearch/content/BabylonWordSearch.Results.js" />
+    src="chrome://babylonWordSearch/content/BabylonWordSearch.Results.js" />
   <script type="application/x-javascript"
-          src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
+    src="chrome://babylonWordSearch/content/BabylonWordSearch.Utils.js" />
   <script type="application/x-javascript"
-          src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
+    src="chrome://babylonWordSearch/content/BabylonWordSearch.Constants.js" />
 
   <stringbundleset id="stringbundleset">
     <stringbundle id="babylon-word-search-strings"
-                  src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
+      src="chrome://babylonWordSearch/locale/babylonWordSearch.properties"/>
   </stringbundleset>
 
   <vbox>

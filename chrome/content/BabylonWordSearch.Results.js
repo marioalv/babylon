@@ -1,5 +1,4 @@
-if ("undefined" == typeof(BabylonWordSearch))
-{
+if ("undefined" == typeof(BabylonWordSearch)) {
   var BabylonWordSearch = {};
 };
 
@@ -12,13 +11,12 @@ BabylonWordSearch.Results = {
   searchText: {},
   loadingImageGif: "chrome://babylonWordSearch/skin/throbber.gif",
   prefManager: Components.classes["@mozilla.org/preferences-service;1"]
-                         .getService(Components.interfaces.nsIPrefBranch),
+    .getService(Components.interfaces.nsIPrefBranch),
 
   /**
    *
    */
-  init: function()
-  {
+  init: function() {
     this.stringBundle = document.getElementById('babylon-word-search-strings');
     this.resultsWindow = document.getElementById('babylon-word-search-results-window');
     this.resultsFrame = document.getElementById('babylon-word-search-results-frame');
@@ -41,47 +39,44 @@ BabylonWordSearch.Results = {
     BabylonWordSearch.Utils.createLanguagesMenulist(this.languagesList, this.stringBundle);
 
     this.resultsFrame.addEventListener("load",
-                                  function()
-                                  {
-                                    //after getting the results, we need to clean up a little the resulting HTML
-                                    BabylonWordSearch.Results.cleanHTMLCode();
-                                  },
-                                  true);
+      function() {
+        //after getting the results, we need to clean up a little the resulting HTML
+        BabylonWordSearch.Results.cleanHTMLCode();
+      }, true);
   },
 
   /**
    * result: cleans the results from the Babylon website (removes images and unnecessary divs)
    */
-  cleanHTMLCode: function()
-  {
+  cleanHTMLCode: function() {
     var bannersArray = this.resultsFrame.contentDocument
-                                        .getElementsByClassName('OT_BannerDiv');
+      .getElementsByClassName('OT_BannerDiv');
     if (bannersArray) {
-      for (var i=0; i<bannersArray.length; i++) {
+      for (var i = 0; i < bannersArray.length; i++) {
         bannersArray[i].parentNode.removeChild(bannersArray[i]);
       }
     }
 
     var imagesArray = this.resultsFrame.contentDocument
-                                       .getElementsByClassName('OT_OnlineImageArea');
+      .getElementsByClassName('OT_OnlineImageArea');
     if (imagesArray) {
-      for (var j=0; j<imagesArray.length; j++) {
+      for (var j = 0; j < imagesArray.length; j++) {
         imagesArray[j].parentNode.removeChild(imagesArray[j]);
       }
     }
 
     var containerDiv = this.resultsFrame.contentWindow
-                                        .document.getElementById('container');
+      .document.getElementById('container');
     if (containerDiv) {
       var resultsColDiv =
         this.resultsFrame.contentWindow.document.getElementById('results-col');
       this.resultsFrame.contentWindow.document.body.insertBefore(resultsColDiv,
-                                                                 containerDiv);
+        containerDiv);
       this.resultsFrame.contentWindow.document.body.removeChild(containerDiv);
     }
 
     var title = this.resultsFrame.contentWindow.document
-                                               .getElementsByTagName('title')[0];
+      .getElementsByTagName('title')[0];
     if (title) {
       var newTitle = title.innerHTML.replace("&amp;", "&");
       newTitle = decodeURIComponent(newTitle);
@@ -95,8 +90,7 @@ BabylonWordSearch.Results = {
   /**
    * result: sets the searched word in the search textbox in the results window
    */
-  setSearchedWord: function(searchedWord)
-  {
+  setSearchedWord: function(searchedWord) {
     this.searchText.value = searchedWord;
     this.searchText.focus();
   },
@@ -105,15 +99,15 @@ BabylonWordSearch.Results = {
    * result: for every queried word, we need to generate a search URL and set the
    * results iframe src attribute to the generated search URL
    */
-  generateSearchLink: function()
-  {
-    var babylonWordSearchText = BabylonWordSearch.Utils.trimString(this.searchText.value);
+  generateSearchLink: function() {
+    var babylonWordSearchText =
+      BabylonWordSearch.Utils.trimString(this.searchText.value);
     if (babylonWordSearchText != "") {
       this.loadingImage.src = this.loadingImageGif;
       var definitionLanguage = this.languagesList.value;
       //create a search URL to query Babylon's online dictionary
       var searchURL = BabylonWordSearch.Utils.getSearchURL(definitionLanguage,
-                                                           babylonWordSearchText);
+        babylonWordSearchText);
       this.resultsFrame.setAttribute('src', "about:blank");
       this.resultsFrame.setAttribute('src', searchURL);
     }
@@ -123,5 +117,4 @@ BabylonWordSearch.Results = {
 }
 
 window.addEventListener("load",
-                        function () { BabylonWordSearch.Results.init() },
-                        false);
+  function () { BabylonWordSearch.Results.init() }, false);

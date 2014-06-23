@@ -1,5 +1,4 @@
-if ("undefined" == typeof(BabylonWordSearch))
-{
+if ("undefined" == typeof(BabylonWordSearch)) {
   var BabylonWordSearch = {};
 };
 
@@ -13,52 +12,51 @@ BabylonWordSearch = {
   babylonPrefs: {},
   searchResultsDialogURL: 'chrome://babylonWordSearch/content/results.xul',
   searchResultsDialogName: 'resultsDialog',
-  searchResultsDialogParameters: 'chrome,extra-chrome,statusbar,dialog,resizable,centerscreen,width=455px,height=500px',
+  searchResultsDialogParameters:
+    'chrome,extra-chrome,statusbar,dialog,resizable,centerscreen,width=455px,height=500px',
   prefManager: Components.classes["@mozilla.org/preferences-service;1"]
-                         .getService(Components.interfaces.nsIPrefBranch),
+    .getService(Components.interfaces.nsIPrefBranch),
 
   /**
    *
    */
-  init: function()
-  {
+  init: function() {
     this.stringBundle = document.getElementById('babylon-word-search-strings');
-    this.statusbarPanel = document.getElementById('babylon-word-search-status-bar-panel');
+    this.statusbarPanel =
+      document.getElementById('babylon-word-search-status-bar-panel');
     this.statusbarPanel.setAttribute('tooltiptext',
-                                     this.stringBundle.getString('babylonWordSearch.statusBar.tooltip'));
+      this.stringBundle.getString('babylonWordSearch.statusBar.tooltip'));
 
     this.toolsPanel = document.getElementById('babylon-word-search-tools-panel');
 
     //hook up Firefox's context menu
-    var contentAreaContextMenu = document.getElementById("contentAreaContextMenu");
+    var contentAreaContextMenu =
+      document.getElementById("contentAreaContextMenu");
     if (contentAreaContextMenu != null) {
       contentAreaContextMenu.addEventListener("popupshowing",
-                              function () { BabylonWordSearch.showContextMenu() },
-                              false);
+        function () { BabylonWordSearch.showContextMenu() }, false);
     }
 
     //hook up Thunderbird's reading message context menu
     var mailContext = document.getElementById("mailContext");
     if (mailContext != null) {
       mailContext.addEventListener("popupshowing",
-                    function () { BabylonWordSearch.showContextMenu() },
-                    false);
+        function () { BabylonWordSearch.showContextMenu() }, false);
     }
 
     //hook up Thunderbird's compose/reply mail context menu
     var mailComposeContext = document.getElementById("msgComposeContext");
     if (mailComposeContext != null) {
       mailComposeContext.addEventListener("popupshowing",
-                          function () { BabylonWordSearch.showContextMenu() },
-                          false);
+        function () { BabylonWordSearch.showContextMenu() }, false);
     }
 
     //check if there is a default language as a preference
     //if there isn't a preference default language, use the user browser's language
-    if (this.prefManager.getCharPref("babylonWordSearch.defaultSearchLanguage")
-        == BABYLON_WORD_SEARCH_EMPTY_STRING) {
+    if (this.prefManager.getCharPref(
+      "babylonWordSearch.defaultSearchLanguage") == BABYLON_WORD_SEARCH_EMPTY_STRING) {
       this.prefManager.setCharPref("babylonWordSearch.defaultSearchLanguage",
-                                   BabylonWordSearch.Utils.getBrowserLanguage());
+        BabylonWordSearch.Utils.getBrowserLanguage());
     }
 
     //set the application's shortcut
@@ -66,8 +64,8 @@ BabylonWordSearch = {
 
     //add and observer to watch for the shortcut preference change
     this.babylonPrefs = Components.classes["@mozilla.org/preferences-service;1"]
-                                   .getService(Components.interfaces.nsIPrefService)
-                                   .getBranch("babylonWordSearch.");
+      .getService(Components.interfaces.nsIPrefService)
+      .getBranch("babylonWordSearch.");
     this.babylonPrefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
     this.babylonPrefs.addObserver("", this, false);
 
@@ -106,7 +104,7 @@ BabylonWordSearch = {
    * @return true if placed in the main toolbar, false otherwise.
    */
   _isButtonInMainToolbar : function() {
-    let toolbar = document.getElementById("nav-bar");
+    var toolbar = document.getElementById("nav-bar");
 
     return (-1 != toolbar.currentSet.indexOf("babylon-toolbar-item"));
   },
@@ -125,8 +123,8 @@ BabylonWordSearch = {
         var toolbar = document.getElementById("nav-bar");
 
         // If no afterId is given, then append the item to the toolbar
-        let before = null;
-        let elem = document.getElementById("urlbar-container");
+        var before = null;
+        var elem = document.getElementById("urlbar-container");
         if (elem && elem.parentNode == toolbar)
           before = elem;
 
@@ -170,8 +168,7 @@ BabylonWordSearch = {
    * For Thunderbird, we need to get the selected text with the function named
    * content.getSelection(), because getBrowserSelection() is not defined as a global function in Thunderbird
    */
-  getSelectedText: function()
-  {
+  getSelectedText: function() {
     //check if the user is searching for a word located inside a textbox
     var focusedElement = document.commandDispatcher.focusedElement;
 
@@ -182,8 +179,8 @@ BabylonWordSearch = {
         BabylonWordSearch.Utils.trimString(
           focusedElement.value.substr(selectionStart, selectionEnd));
 
-      if (selectedText != null && selectedText != BABYLON_WORD_SEARCH_EMPTY_STRING)
-      {
+      if (selectedText != null &&
+        selectedText != BABYLON_WORD_SEARCH_EMPTY_STRING) {
         return selectedText;
       }
     }
@@ -207,27 +204,27 @@ BabylonWordSearch = {
    * If there is a selected word, "Search [selectedWord] in Babylon" option will be displayed
    * Otherwise, "Search in Babylon" option will be displayed
    */
-  overwriteBabylonToolsMenu: function()
-  {
+  overwriteBabylonToolsMenu: function() {
     var stringToSearch = this.getSelectedText();
     var babylonWordSearchToolsPanel =
       document.getElementById('babylon-word-search-tools-panel');
 
     if (!(stringToSearch == BABYLON_WORD_SEARCH_EMPTY_STRING)) {
       this.rebuildToolbarMenu(
-        this.stringBundle.getFormattedString("babylonWordSearch.search", [stringToSearch])
+        this.stringBundle.getFormattedString("babylonWordSearch.search",
+          [stringToSearch])
       );
     }
     else {
-      this.rebuildToolbarMenu(this.stringBundle.getString("babylonWordSearch.emptySearch"));
+      this.rebuildToolbarMenu(
+        this.stringBundle.getString("babylonWordSearch.emptySearch"));
     }
   },
 
   /**
    * result: determines if the "Search in Babylon" option should be added to the context menu
    */
-  showContextMenu: function()
-  {
+  showContextMenu: function() {
     var stringToSearch = this.getSelectedText();
     var babylonWordSearchContextMenu =
       document.getElementById('babylon-word-search-context-menu');
@@ -236,7 +233,7 @@ BabylonWordSearch = {
       babylonWordSearchContextMenu.hidden = false;
       babylonWordSearchContextMenu.label =
         this.stringBundle.getFormattedString("babylonWordSearch.search",
-                                             [stringToSearch]);
+          [stringToSearch]);
     }
     else {
       babylonWordSearchContextMenu.hidden = true;
@@ -246,8 +243,7 @@ BabylonWordSearch = {
   /**
    * result: handles the event when the user double clicks over a word to search
    */
-  handleDoubleClick: function()
-  {
+  handleDoubleClick: function() {
     if (!(this.getSelectedText() == BABYLON_WORD_SEARCH_EMPTY_STRING) &&
         this.prefManager.getBoolPref("babylonWordSearch.isDoubleClickSearch")) {
 
@@ -258,20 +254,19 @@ BabylonWordSearch = {
   /**
    * result: searches in Babylon for the word selected by the user
    */
-  searchWordInBabylon: function()
-  {
+  searchWordInBabylon: function() {
     var stringToSearch = this.getSelectedText();
     var searchURL =
       BabylonWordSearch.Utils.getSearchURL(
         this.prefManager.getCharPref("babylonWordSearch.defaultSearchLanguage"),
-        stringToSearch);
+          stringToSearch);
 
     var openedDialog =
       window.openDialog(this.searchResultsDialogURL,
-                        this.getSearchResultsDialogName(),
-                        this.searchResultsDialogParameters,
-                        searchURL,
-                        stringToSearch);
+        this.getSearchResultsDialogName(),
+        this.searchResultsDialogParameters,
+        searchURL,
+        stringToSearch);
     openedDialog.focus();
     return true;
   },
@@ -279,12 +274,11 @@ BabylonWordSearch = {
   /**
    * result: opens an empty search dialog to search for a word in Babylon
    */
-  openBabylonSearchDialog: function()
-  {
+  openBabylonSearchDialog: function() {
     var openedDialog =
       window.openDialog(this.searchResultsDialogURL,
-                        this.getSearchResultsDialogName(),
-                        this.searchResultsDialogParameters);
+        this.getSearchResultsDialogName(),
+        this.searchResultsDialogParameters);
     openedDialog.focus();
   },
 
@@ -294,11 +288,11 @@ BabylonWordSearch = {
    * If the results window has the same name everytime it's opened,
    * all the results will be shown in the same opened window
    */
-  getSearchResultsDialogName: function()
-  {
+  getSearchResultsDialogName: function() {
     var dialogName = BABYLON_WORD_SEARCH_EMPTY_STRING;
 
-    if (this.prefManager.getBoolPref("babylonWordSearch.openResultsInSameWindow")) {
+    if (this.prefManager.getBoolPref(
+      "babylonWordSearch.openResultsInSameWindow")) {
       dialogName = this.searchResultsDialogName;
     }
 
@@ -310,8 +304,7 @@ BabylonWordSearch = {
    * left click: search for word definition
    * right click: open the preferences dialog
    */
-  processStatusbarClick: function(event)
-  {
+  processStatusbarClick: function(event) {
     if (event.button == 0) {
       //left click
       this.searchWordInBabylon();
@@ -351,8 +344,7 @@ BabylonWordSearch = {
    * result: when the shortcut preference is changed,
    * we need to rebuild the keyset element and the toolbar menu to display the new shortcut
    */
-  setKeyShortcutFromPreference: function()
-  {
+  setKeyShortcutFromPreference: function() {
     this.toogleShortcutKeysListener();
     this.rebuildToolbarMenu(null);
   },
@@ -361,14 +353,14 @@ BabylonWordSearch = {
   * result: everytime the shortcut preference is set, we need to rebuild the keyset,
   * in order to re-capture the new shortcut
   */
-  toogleShortcutKeysListener: function ()
-  {
+  toogleShortcutKeysListener: function () {
     var modifiersString = BABYLON_WORD_SEARCH_EMPTY_STRING;
     var keyString = BABYLON_WORD_SEARCH_EMPTY_STRING;
-    var shortcutString = this.prefManager.getCharPref('babylonWordSearch.keyboardShortcut');
+    var shortcutString =
+      this.prefManager.getCharPref('babylonWordSearch.keyboardShortcut');
     var shortcutTokensArray = shortcutString.split('-');
 
-    for(var i=0; i<shortcutTokensArray.length; i++){
+    for(var i = 0; i < shortcutTokensArray.length; i++){
       if( ["alt","control","meta","shift"].indexOf(shortcutTokensArray[i]) != -1 ) {
         modifiersString += shortcutTokensArray[i] + " ";
       }
@@ -380,13 +372,15 @@ BabylonWordSearch = {
     this.babylonShortcutKeyset = document.getElementById('babylon-word-search-keyset');
     if (this.babylonShortcutKeyset != null) {
       var keysetParent = this.babylonShortcutKeyset.parentNode;
-      this.babylonShortcutKeyset.parentNode.removeChild(this.babylonShortcutKeyset);
+      this.babylonShortcutKeyset.parentNode.removeChild(
+        this.babylonShortcutKeyset);
 
       var keysetElement = document.createElement('keyset');
       keysetElement.id = 'babylon-word-search-keyset';
       var keyElement = document.createElement('key');
       keyElement.setAttribute('id', 'babylon-word-search-key');
-      keyElement.setAttribute('oncommand', 'BabylonWordSearch.searchWordInBabylon();');
+      keyElement.setAttribute('oncommand',
+        'BabylonWordSearch.searchWordInBabylon();');
 
       if (this.prefManager.getBoolPref('babylonWordSearch.useShortcut') == true) {
         keyElement.setAttribute('key', keyString);
@@ -407,16 +401,20 @@ BabylonWordSearch = {
    * result: everytime the shortcut preference is set, we need to rebuild the toolbar menu element,
    * in order to set the new shortcut in the element's description
    */
-  rebuildToolbarMenu: function(newLabel)
-  {
-    this.toolsPanel = document.getElementById('babylon-word-search-tools-panel');
+  rebuildToolbarMenu: function(newLabel) {
+    this.toolsPanel =
+      document.getElementById('babylon-word-search-tools-panel');
     var babylonToolsPanel = document.createElement('menuitem');
     babylonToolsPanel.setAttribute('id', this.toolsPanel.id);
-    babylonToolsPanel.setAttribute('image', this.toolsPanel.getAttribute('image'));
-    babylonToolsPanel.setAttribute('class', this.toolsPanel.getAttribute('class'));
-    babylonToolsPanel.setAttribute('accesskey', this.toolsPanel.getAttribute('accesskey'));
+    babylonToolsPanel.setAttribute('image',
+      this.toolsPanel.getAttribute('image'));
+    babylonToolsPanel.setAttribute('class',
+      this.toolsPanel.getAttribute('class'));
+    babylonToolsPanel.setAttribute('accesskey',
+      this.toolsPanel.getAttribute('accesskey'));
     babylonToolsPanel.setAttribute('insertafter', 'devToolsSeparator');
-    babylonToolsPanel.setAttribute('oncommand', 'BabylonWordSearch.searchWordInBabylon();');
+    babylonToolsPanel.setAttribute('oncommand',
+      'BabylonWordSearch.searchWordInBabylon();');
     babylonToolsPanel.setAttribute('key', 'babylon-word-search-key');
 
     if (newLabel != null && !(newLabel == BABYLON_WORD_SEARCH_EMPTY_STRING)) {
@@ -433,29 +431,25 @@ BabylonWordSearch = {
   /**
    *
    */
-  unload: function()
-  {
+  unload: function() {
     this.babylonPrefs.removeObserver("", this, false);
 
     window.removeEventListener("load",
-                               function () { BabylonWordSearch.init() },
-                               false);
+      function () { BabylonWordSearch.init() },
+      false);
 
     window.removeEventListener("dblclick",
-                               function() { BabylonWordSearch.handleDoubleClick() } ,
-                               false);
+      function() { BabylonWordSearch.handleDoubleClick() } ,
+      false);
   }
 
 };
 
 window.addEventListener("load",
-                        function () { BabylonWordSearch.init() },
-                        false);
+  function () { BabylonWordSearch.init() }, false);
 
 window.addEventListener("unload",
-                        function() { BabylonWordSearch.unload() } ,
-                        false);
+  function() { BabylonWordSearch.unload() }, false);
 
 window.addEventListener("dblclick",
-                        function() { BabylonWordSearch.handleDoubleClick() } ,
-                        false);
+  function() { BabylonWordSearch.handleDoubleClick() } , false);

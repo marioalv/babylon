@@ -13,7 +13,7 @@ BabylonWordSearch = {
   searchResultsDialogURL: 'chrome://babylonWordSearch/content/results.xul',
   searchResultsDialogName: 'resultsDialog',
   searchResultsDialogParameters:
-    'chrome,extra-chrome,statusbar,dialog,resizable,centerscreen,width=455px,height=500px',
+    'chrome,extra-chrome,statusbar,dialog,resizable,centerscreen,width=495px,height=500px',
   prefManager: Components.classes["@mozilla.org/preferences-service;1"]
     .getService(Components.interfaces.nsIPrefBranch),
 

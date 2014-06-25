@@ -5,7 +5,7 @@ if ("undefined" == typeof(BabylonWordSearch)) {
 BabylonWordSearch = {
 
   stringBundle: {},
-  statusbarPanel: {},
+  statusBarIcon: {},
   toolsPanel: {},
   babylonShortcutKeyset: {},
   babylonShortcutKey: {},
@@ -22,11 +22,12 @@ BabylonWordSearch = {
    */
   init: function() {
     this.stringBundle = document.getElementById('babylon-word-search-strings');
-    this.statusbarPanel =
+    this.statusBarIcon =
       document.getElementById('babylon-word-search-status-bar-panel');
-    this.statusbarPanel.setAttribute('tooltiptext',
-      this.stringBundle.getString('babylonWordSearch.statusBar.tooltip'));
-
+    if (this.statusBarIcon) {
+      this.statusBarIcon.setAttribute('tooltiptext',
+        this.stringBundle.getString('babylonWordSearch.statusBar.tooltip'));
+    }
     this.toolsPanel = document.getElementById('babylon-word-search-tools-panel');
 
     //hook up Firefox's context menu
@@ -53,8 +54,9 @@ BabylonWordSearch = {
 
     //check if there is a default language as a preference
     //if there isn't a preference default language, use the user browser's language
-    if (this.prefManager.getCharPref(
-      "babylonWordSearch.defaultSearchLanguage") == BABYLON_WORD_SEARCH_EMPTY_STRING) {
+    if (!this.prefManager.getPrefType("babylonWordSearch.defaultSearchLanguage") ||
+      this.prefManager.getCharPref("babylonWordSearch.defaultSearchLanguage") ==
+        BABYLON_WORD_SEARCH_EMPTY_STRING) {
       this.prefManager.setCharPref("babylonWordSearch.defaultSearchLanguage",
         BabylonWordSearch.Utils.getBrowserLanguage());
     }
@@ -70,51 +72,20 @@ BabylonWordSearch = {
     this.babylonPrefs.addObserver("", this, false);
 
     // initializes the babylon button.
-    this._initBabylonButton();
-  },
-
-  _initBabylonButton : function() {
-    this._overwriteCustomizeDone();
     this._installToolbarButton();
-  },
-
-  /**
-   * Overwrites the BrowserToolboxCustomizeDone method.
-   */
-  _overwriteCustomizeDone : function() {
-    let that = this;
-    let originalCustomizeDone = BrowserToolboxCustomizeDone;
-
-    BrowserToolboxCustomizeDone = function(toolboxChanged) {
-      originalCustomizeDone(toolboxChanged);
-      that._afterCustomizeDone();
-    };
-  },
-
-   /**
-   * Processes after the BrowserToolboxCustomizeDone is called.
-   */
-  _afterCustomizeDone : function() {
-    this.prefManager.setBoolPref("babylonWordSearch.buttonInToolbar",
-      this._isButtonInMainToolbar());
-  },
-
-  /**
-   * Checks if the button is placed in the main toolbar.
-   * @return true if placed in the main toolbar, false otherwise.
-   */
-  _isButtonInMainToolbar : function() {
-    var toolbar = document.getElementById("nav-bar");
-
-    return (-1 != toolbar.currentSet.indexOf("babylon-toolbar-item"));
   },
 
   /**
    * Installs the toolbar button on the first run.
    */
   _installToolbarButton: function() {
-    var buttonInstalled =
-      this.prefManager.getBoolPref("babylonWordSearch.buttonAddedToFF4");
+    var buttonInstalled = false;
+
+    //first check if the preference exists
+    if(this.prefManager.getPrefType("babylonWordSearch.buttonAddedToFF4")) {
+      buttonInstalled =
+        this.prefManager.getBoolPref("babylonWordSearch.buttonAddedToFF4");
+    }
 
     if (!buttonInstalled) {
       var id = "babylon-toolbar-item";
@@ -149,10 +120,12 @@ BabylonWordSearch = {
     //check if the status bar icon should be displayed
     var statusBarIcon =
       document.getElementById("babylon-word-search-status-bar-panel");
-    if (this.prefManager.getBoolPref("babylonWordSearch.showStatusBarIcon")) {
-      statusBarIcon.setAttribute("collapsed", false);
-    } else {
-      statusBarIcon.setAttribute("collapsed", true);
+    if (statusBarIcon) {
+      if (this.prefManager.getBoolPref("babylonWordSearch.showStatusBarIcon")) {
+        statusBarIcon.setAttribute("collapsed", false);
+      } else {
+        statusBarIcon.setAttribute("collapsed", true);
+      }
     }
   },
 

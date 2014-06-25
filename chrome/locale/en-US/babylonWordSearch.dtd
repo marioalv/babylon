@@ -4,7 +4,7 @@
 <!ENTITY babylonWordSearch.prefWindow.title                           "Babylon Word Search Preferences">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.title                  "Search Preferences">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.settings               "Preferences">
-<!ENTITY babylonWordSearch.prefWindow.prefPane.statusBarIcon          "Show Babylon icon in the status bar / addon bar ">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.statusBarIcon          "Show Babylon icon in the status bar / addon bar">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.doubleClickSearch      "Search for word definition on double click">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.openResultsSameWindow  "Always open results in the same window">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.defaultLanguage        "Default search language: ">

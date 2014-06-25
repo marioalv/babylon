@@ -4,11 +4,13 @@
 <!ENTITY babylonWordSearch.prefWindow.title                           "Babylon preferenze di ricerca di parole">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.title                  "Preferenze Ricerca">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.settings               "Preferences">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.statusBarIcon          "Mostra icona Babylon nella barra di stato">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.doubleClickSearch      "Doppio click per ricerca di definizione di parola">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.openResultsSameWindow  "Sempre aprire i risultati nella stessa finestra">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.defaultLanguage        "Lingua di ricerca predeterminata: ">
 <!ENTITY babylonWordSearch.prefWindow.prefPane.useShortcut            "Usare codici rapidi tastiera">
 
+<!ENTITY babylonWordSearch.prefWindow.statusBarIcon.accesskey         "i">
 <!ENTITY babylonWordSearch.prefWindow.doubleClick.accesskey           "d">
 <!ENTITY babylonWordSearch.prefWindow.sameWindow.accesskey            "s">
 <!ENTITY babylonWordSearch.resultsWindow.header.searchFor             "Ricerca:">

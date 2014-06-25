@@ -1,0 +1,17 @@
+<!ENTITY babylonWordSearch.search "Rechercher sur Babylon">
+<!ENTITY babylonWordSearch.accesskey "y">
+
+<!ENTITY babylonWordSearch.prefWindow.title                           "Préferénces de recherche de mots sur Babylon">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.title                  "Préferénces de recherche">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.settings               "Préferénces">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.statusBarIcon          "Voir Babylone icône dans la barre d'état">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.doubleClickSearch      "Rechercher la définition des mots en faisant double clic">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.openResultsSameWindow  "Toujours ouvrir les liens des résultats dans la mème fenêtre">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.defaultLanguage        "Langue de recherche utilisée par défaut ">
+<!ENTITY babylonWordSearch.prefWindow.prefPane.useShortcut            "Utiliser un raccourci clavier">
+
+<!ENTITY babylonWordSearch.prefWindow.statusBarIcon.accesskey         "i">
+<!ENTITY babylonWordSearch.prefWindow.doubleClick.accesskey           "d">
+<!ENTITY babylonWordSearch.prefWindow.sameWindow.accesskey            "s">
+<!ENTITY babylonWordSearch.resultsWindow.header.searchFor             "Rechercher:">
+<!ENTITY babylonWordSearch.resultsWindow.header.in                    "sur">
